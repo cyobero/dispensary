@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from dispensary.views import home
-from dispensary import settings
 from django.conf.urls.static import static
+from dispensary.views import home
+from inventory.views import product_info
+from dispensary import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home)
+    path('', home),
+    path('flowers/<slug:slug>', product_info)
 ]
 
 if settings.DEBUG:

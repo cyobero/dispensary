@@ -1,5 +1,6 @@
 from django.db import models
 from localflavor.us.models import USStateField, USZipCodeField
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 class Grower(models.Model):
@@ -19,8 +20,9 @@ class Grower(models.Model):
         ordering = ['name']
 
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
+
 
 class Flower(models.Model):
     FAMILY_CHOICES = [
@@ -30,8 +32,19 @@ class Flower(models.Model):
     ]
 
     strain = models.CharField(max_length=80)
-    thc = models.DecimalField(max_digits=4, decimal_places=2)
+    thc = models.DecimalField(max_digits=4, decimal_places=2, verbose_name='THC')
     family = models.CharField(max_length=6, choices=FAMILY_CHOICES)
     grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, null=True, upload_to='flowers/')
     product_description = models.TextField(blank=True, null=True)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.strain
+
+
+    # Automatically generates slug based on `strain`.
+    def save(self, *args, **kwargs):
+        if not self.strain:
+            self.slug = slugify(self.strain)
+        super(Flower, self).save(*args, **kwargs)

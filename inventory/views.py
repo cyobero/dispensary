@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from inventory.models import
+from django.shortcuts import get_object_or_404
+from inventory.models import Flower
 
 # Create your views here.
-def product_info(request):
-    return render(request, 'product_info.html')
+def product_info(request, slug):
+    flower = get_object_or_404(Flower, slug=slug)
+    return render(request, 'product_info.html', {'flower': flower})
