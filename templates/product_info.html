@@ -8,9 +8,23 @@
 {% block content %}
 <div class="container">
 	<div class="row">
-	<div class="col-md-4"></div>
-		{{ flower.strain }}
-	<div class="col-md-8"></div>
+		<div class="col-md-5">
+		<img height="600" width="550" src="{{ flower.image.url }}"></img>
+
+		</div>
+					
+		<div class="col-md-7">
+			<h1 class="display-1">
+			  {{ flower.strain }} 
+			</h1>
+			<h5 class="text-muted display-5">
+			  from {{ flower.grower.name }}
+			</h3>
+			 
+			<p>
+			 {{ flower.product_description }}
+			</p>	
+		</div>
 	</div>
 </div>
 {% endblock %}

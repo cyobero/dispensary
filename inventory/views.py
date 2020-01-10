@@ -6,3 +6,7 @@ from inventory.models import Flower
 def product_info(request, slug):
     flower = get_object_or_404(Flower, slug=slug)
     return render(request, 'product_info.html', {'flower': flower})
+
+
+def shop_home(request):
+    return render(request, 'shop_home.html')

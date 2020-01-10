@@ -18,13 +18,15 @@ from django.urls import path
 from django.conf.urls.static import static
 from dispensary.views import home
 from inventory.views import product_info
+from inventory.views import shop_home
 from dispensary import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
-    path('flowers/<slug:slug>', product_info)
+    path('', home, name='home'),
+    path('shop/', shop_home, name='shop_home'),
+    path('shop/flowers/<slug:slug>', product_info, name='product_info')
 ]
 
 if settings.DEBUG:

@@ -15,6 +15,7 @@ class Grower(models.Model):
     twitter = models.URLField(max_length=80, blank=True, null=True)
     instagram = models.URLField(max_length=80, blank=True, null=True)
     youtube = models.URLField(max_length=80, blank=True, null=True)
+    biography = models.TextField(blank=True, null=True, default='Bio not available.')
 
     class Meta:
         ordering = ['name']
@@ -36,7 +37,8 @@ class Flower(models.Model):
     family = models.CharField(max_length=6, choices=FAMILY_CHOICES)
     grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, null=True, upload_to='flowers/')
-    product_description = models.TextField(blank=True, null=True)
+    product_description = models.TextField(blank=True, null=True,
+            default='Product Description Unavailable.')
     slug = models.SlugField(unique=True)
 
     def __str__(self):

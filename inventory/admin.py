@@ -5,7 +5,7 @@ from inventory.models import Flower, Grower
 class FlowerAdmin(admin.ModelAdmin):
     ordering = ['strain']
     search_fields = ['strain']
-    fields = ('strain', 'grower', 'family', 'thc', 'image', 'slug')
+    fields = ('strain', 'grower', 'family', 'thc', 'image', 'product_description', 'slug')
     list_display = ('strain', 'grower', 'family', 'thc')
     prepopulated_fields = {'slug': ('strain', )}
 
