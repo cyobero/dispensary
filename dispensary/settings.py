@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'localflavor',
     'reviews',
     'customers',
+    'multiselectfield'
 ]
 
 MIDDLEWARE = [

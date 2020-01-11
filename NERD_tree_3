@@ -1,0 +1,13 @@
+" Press ? for help
+
+.. (up a dir)
+/Users/czar.yobero/django/dispensary/dispensary/static/js/
+▸ [   ]addons/
+▸ [   ]modules/
+  [   ]bootstrap.js
+  [   ]bootstrap.min.js
+  [   ]jquery-3.4.1.min.js
+  [   ]mdb.js*
+  [   ]mdb.min.js
+  [   ]popper.min.js*
+  [   ]scrolling-nav.js

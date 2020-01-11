@@ -16,17 +16,21 @@ def shop_home(request):
 
 
 def flowers_home(request):
-    return render(request, 'flowers_home.html')
+    flowers_list = get_list_or_404(Flower)
+    paginator = Paginator(flowers_list, 6)  # Show 6 flowers per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'flowers_home.html', {'flowers_list': flowers_list})
 
 
 def growers_home(request):
-    grower_list = get_list_or_404(Grower)
-    paginator = Paginator(grower_list, 4)  # Show 4 growers per page
+    growers_list = get_list_or_404(Grower)
+    paginator = Paginator(growers_list, 4)  # Show 4 growers per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'growers_home.html',
-            {'grower_list': grower_list,
+            {'growers_list': growers_list,
              'page_obj': page_obj,
             })
 
