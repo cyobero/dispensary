@@ -1,0 +1,46 @@
+{% extends 'shop_home.html' %}
+
+{% block title %}
+<title>Growers</title>
+{% endblock %}
+
+{% block content %}
+ <br>
+
+ <body>
+   <div class="container">
+	<div class="row">
+	 
+	  <div class="col-lg-12">
+
+	<table class="table">
+	<thead class="thead-light">
+	 <tr>
+		<th>Grower</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Web Site</th>
+		<th>E-mail</th>
+	 </tr>
+	</thead>
+	<tbody>
+		{% for grower in grower_list %}	
+		 <tr>
+		   <td><a href="{{ grower.slug }}">{{ grower.name }}</a></td>
+		   <td>{{ grower.city }}</td>
+		   <td>{{ grower.state }}</td>
+		   <td><a href={{ grower.web_site }}> {{ grower.web_site }} </a></td>
+		   <td><a href="mailto: {{ grower.email }}">{{ grower.email }}</a></td>
+		 </tr>
+		{% endfor %}
+	</tbody>
+   </table>
+
+
+
+	  </div>
+
+	</div>
+   </div> 
+   </body>
+{% endblock %}

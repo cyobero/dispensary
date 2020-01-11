@@ -18,7 +18,10 @@ from django.urls import path
 from django.conf.urls.static import static
 from dispensary.views import home
 from inventory.views import product_info
+from inventory.views import grower_info
 from inventory.views import shop_home
+from inventory.views import flowers_home
+from inventory.views import growers_home
 from dispensary import settings
 
 
@@ -26,7 +29,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('shop/', shop_home, name='shop_home'),
-    path('shop/flowers/<slug:slug>', product_info, name='product_info')
+    path('shop/flowers/', flowers_home, name='flowers_home'),
+    path('shop/flowers/<slug:slug>', product_info, name='product_info'),
+    path('growers/', growers_home, name='growers_home'),
+    path('growers/<slug:slug>', grower_info, name='grower_info')
 ]
 
 if settings.DEBUG:

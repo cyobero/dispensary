@@ -11,8 +11,9 @@ class FlowerAdmin(admin.ModelAdmin):
 
 class GrowerAdmin(admin.ModelAdmin):
     ordering = ['name']
-    list_display = ('name', 'city', 'state', 'email')
+    list_display = ('name', 'city', 'state', 'email', 'slug')
     search_fields = ['name', 'email', 'state', 'city']
+    prepopulated_fields = {'slug': ('name', )}
 
 admin.site.register(Flower, FlowerAdmin)
 admin.site.register(Grower, GrowerAdmin)
