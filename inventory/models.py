@@ -61,3 +61,12 @@ class Flower(models.Model):
         if not self.strain:
             self.slug = slugify(self.strain)
         super(Flower, self).save(*args, **kwargs)
+
+
+class Batch(models.Model):
+    grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
+    flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
+    harvest_date = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return 'Batch {}'.format(self.id)
