@@ -1,6 +1,7 @@
 from django.db import models
 from inventory.models import Flower
 from inventory.models import Grower
+from accounts.models import Customer
 from multiselectfield import MultiSelectField
 
 # Create your models here.
@@ -47,6 +48,7 @@ class Review(models.Model):
     ]
 
     rating = models.IntegerField(choices=RATINGS_CHOICES, blank=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
     flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
     review = models.TextField(blank=True, null=True, default='Not yet reviewed.')
     reported_feelings = MultiSelectField(choices=REPORTED_FEELINGS_CHOICES, max_choices=8, blank=True, null=True)
