@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'inventory',
     'localflavor',
     'reviews',
-    'customers',
-    'multiselectfield'
+    'multiselectfield',
+    'accounts'
 ]
 
 MIDDLEWARE = [
