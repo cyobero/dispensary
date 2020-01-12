@@ -45,8 +45,8 @@ class Batch(models.Model):
     ]
 
     harvest_date = models.DateField(blank=True, null=True)
-    harvest_setting = MultiSelectField(
-        choices=HARVEST_SETTING_CHOICES, blank=True, null=True)
+    harvest_setting = models.CharField(
+        max_length=7, choices=HARVEST_SETTING_CHOICES, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'Batches'
@@ -63,7 +63,8 @@ class Flower(models.Model):
     ]
 
     strain = models.CharField(max_length=80)
-    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, blank=True, null=True)
+    batch = models.ForeignKey(
+        Batch, on_delete=models.CASCADE, blank=True, null=True)
     thc = models.DecimalField(
         max_digits=4, decimal_places=2, verbose_name='THC', blank=True, null=True)
     cbd = models.DecimalField(
