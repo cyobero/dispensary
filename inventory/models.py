@@ -1,8 +1,11 @@
 from django.db import models
 from localflavor.us.models import USStateField, USZipCodeField
 from django.template.defaultfilters import slugify
+from multiselectfield import MultiSelectField
 
 # Create your models here.
+
+
 class Grower(models.Model):
     name = models.CharField(max_length=40)
 
@@ -18,22 +21,38 @@ class Grower(models.Model):
     instagram = models.URLField(max_length=80, blank=True, null=True)
     youtube = models.URLField(max_length=80, blank=True, null=True)
 
-    biography = models.TextField(blank=True, null=True, default='Bio not available.')
+    biography = models.TextField(
+        blank=True, null=True, default='Bio not available.')
     image = models.ImageField(blank=True, null=True, upload_to='growers/')
     slug = models.SlugField(blank=True, null=True, unique=True)
 
     class Meta:
         ordering = ['name']
 
-
     def __str__(self):
         return self.name
-
 
     def save(self, *args, **kwargs):
         if not self.name:
             self.slug = slugify(self.name)
         super(Grower, self).save(*args, **kwargs)
+
+
+class Batch(models.Model):
+    HARVEST_SETTING_CHOICES = [
+        ('I', 'Indoor'),
+        ('O', 'Outdoor'),
+    ]
+
+    harvest_date = models.DateField(blank=True, null=True)
+    harvest_setting = MultiSelectField(
+        choices=HARVEST_SETTING_CHOICES, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = 'Batches'
+
+    def __str__(self):
+        return 'Batch {}'.format(self.id)
 
 
 class Flower(models.Model):
@@ -44,29 +63,23 @@ class Flower(models.Model):
     ]
 
     strain = models.CharField(max_length=80)
-    thc = models.DecimalField(max_digits=4, decimal_places=2, verbose_name='THC')
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, blank=True, null=True)
+    thc = models.DecimalField(
+        max_digits=4, decimal_places=2, verbose_name='THC', blank=True, null=True)
+    cbd = models.DecimalField(
+        max_digits=4, decimal_places=2, verbose_name='CBD', blank=True, null=True)
     family = models.CharField(max_length=6, choices=FAMILY_CHOICES)
     grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, null=True, upload_to='flowers/')
     product_description = models.TextField(blank=True, null=True,
-            default='Product Description Unavailable.')
+                                           default='Product Description Not Yet Available.')
     slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.strain
-
 
     # Automatically generates slug based on `strain`.
     def save(self, *args, **kwargs):
         if not self.strain:
             self.slug = slugify(self.strain)
         super(Flower, self).save(*args, **kwargs)
-
-
-class Batch(models.Model):
-    grower = models.ForeignKey(Grower, on_delete=models.CASCADE)
-    flower = models.ForeignKey(Flower, on_delete=models.CASCADE)
-    harvest_date = models.DateField(blank=True, null=True)
-
-    def __str__(self):
-        return 'Batch {}'.format(self.id)
