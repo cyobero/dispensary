@@ -1,83 +1,104 @@
 {% load static %}
-<html>
-   <head>
+<html> <head>
 
-	<!-- Boostrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Muli|Arimo|Inria+Serif|Poppins:300&display=swap" rel="stylesheet">
+		<!-- Boostrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+							   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-	<style>
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto|Muli|Arimo|Inria+Serif|Poppins:300&display=swap" rel="stylesheet">
+
+		<style>
 		body {
-  		 font-family: 'Muli', serif;
+			font-family: 'Muli', serif;
 		}
 		nav {
-		  font-family: 'Poppins', sans-serif;
+			font-family: 'Poppins', sans-serif;
 		}
 		table {
-		  font-size: 17px;
+			font-size: 17px;
 		}
-	</style>
 
 
-	{% block title %}
-	<title></title>
-	{% endblock %}
-   </head>
-  <body>
-	<!-- Navigation Bar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-		<a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-		<a class="nav-link" href="{% url 'growers_home' %}">Growers</a>
-      </li>
-      <li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" href="{% url 'shop_home' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Shop
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		  <a class="dropdown-item" href="{% url 'flowers_home' %}">Flowers</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
+		</style>
 
 
-{% block content %}
+		{% block style %}
 
-{% endblock %}
+		{% endblock %}
 
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Boostrap.js -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
-	  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
-	  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
-	  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		{% block title %}
+		<title></title>
+		{% endblock %}
+	</head>
 
-  </body>
+	<body>
+		<!-- Navigation Bar -->
+		<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'home_view' %}">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="{% url 'shop_home_view' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Shop
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{% url 'flowers_home_view' %}">Flowers</a>
+							<a class="dropdown-item" href="#">Delivery</a>
+							<a class="dropdown-item" href="#">Store Pick-Up</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'growers_home_view' %}">Growers</a>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="{% url 'shop_home_view' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							About
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Contact Us</a>
+							<a class="dropdown-item" href="#">Join Our Team</a>
+							<a class="dropdown-item" href="#">Partner With Us</a>
+							<a class="dropdown-item" href="#">FAQs</a>
+						</div>
+					</li>
+
+
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
+			</div>
+		</nav>
+
+
+		{% block content %}
+
+		{% endblock %}
+
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Boostrap.js -->
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+				integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+				integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+		{% block js %}
+
+		{% endblock %}
+	</body>
 </html>
