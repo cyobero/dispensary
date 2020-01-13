@@ -48,6 +48,8 @@ class Plug(models.Model):
     instagram = models.URLField(max_length=80, blank=True, null=True)
     youtube = models.URLField(max_length=80, blank=True, null=True)
 
+    birth_date = models.DateField(blank=True, null=True)
+
     address_one = models.CharField(max_length=60, blank=True, null=True)
     address_two = models.CharField(max_length=40, blank=True, null=True)
     city = models.CharField(max_length=70)
