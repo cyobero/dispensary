@@ -25,9 +25,3 @@ class RegisterForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'style':'width:316px', 'placeholder':'Email address'}),
             'password': forms.PasswordInput(attrs={'style':'width:316px', 'placeholder':'Password'}),
         }
-
-
-class LoginForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password', )
