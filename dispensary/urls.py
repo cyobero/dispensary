@@ -31,16 +31,16 @@ from dispensary import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view, name='home_view'),
-    path('shop/', shop_home_view, name='shop_home_view'),
-    path('shop/flowers/', flowers_home_view, name='flowers_home_view'),
-    path('shop/flowers/<slug:slug>', product_info_view, name='product_info_view'),
-    path('growers/', growers_home_view, name='growers_home_view'),
-    path('growers/<slug:slug>', grower_info_view, name='grower_info_view'),
+    path('', home_view, name='home'),
+    path('shop/', shop_home_view, name='shop_home'),
+    path('shop/flowers/', flowers_home_view, name='flowers_home'),
+    path('shop/flowers/<slug:slug>', product_info_view, name='product_info'),
+    path('growers/', growers_home_view, name='growers_home'),
+    path('growers/<slug:slug>', grower_info_view, name='grower_info'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('login/', login_view, name='login_view'),
-    path('register_view/', register_view, name='register_view'),
-    path('reviews/<slug:slug>', review, name='review_view'),
+    path('login/', login_view, name='login'),
+    path('register/', register_view, name='register'),
+    path('reviews/<slug:slug>', review, name='review'),
 ]
 
 if settings.DEBUG:
