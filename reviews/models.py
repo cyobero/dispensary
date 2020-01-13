@@ -7,7 +7,8 @@ from multiselectfield import MultiSelectField
 # Create your models here.
 class Review(models.Model):
     RATINGS_CHOICES = [
-        (1, 'Doo-doo'), (2, 'Reggie Miller'),
+        (1, 'Doo-doo'),
+        (2, 'Reggie Miller'),
         (3, 'Decent'),
         (4, 'Bomb'),
         (5, 'GOAT')
@@ -55,7 +56,6 @@ class Review(models.Model):
     reported_effects = MultiSelectField(choices=REPORTED_EFFECTS_CHOICES, max_choices=4, blank=True, null=True)
     reported_activities = MultiSelectField(choices=ACTIVITIES_CHOICES, max_choices=4, blank=True, null=True)
     reported_reliefs = MultiSelectField(choices=RELIEVES_CHOICES, max_choices=4, blank=True, null=True)
-
 
     class Meta:
         ordering = ['-rating', 'flower']
