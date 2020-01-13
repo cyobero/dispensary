@@ -5,35 +5,44 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 Examples:
 Function views
     1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+    2. Add a URL to urlpatterns:  path('', views.home_view, name='home')
 Class-based views
     1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home_view')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
 from django.conf.urls.static import static
-from dispensary.views import home
-from inventory.views import product_info
-from inventory.views import grower_info
-from inventory.views import shop_home
-from inventory.views import flowers_home
-from inventory.views import growers_home
+from dispensary.views import home_view
+from inventory.views import product_info_view
+from inventory.views import grower_info_view
+from inventory.views import shop_home_view
+from inventory.views import flowers_home_view
+from inventory.views import growers_home_view
+from accounts.views import register_view
+from accounts.views import login_view
+from reviews.views import review
 from dispensary import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
-    path('shop/', shop_home, name='shop_home'),
-    path('shop/flowers/', flowers_home, name='flowers_home'),
-    path('shop/flowers/<slug:slug>', product_info, name='product_info'),
-    path('growers/', growers_home, name='growers_home'),
-    path('growers/<slug:slug>', grower_info, name='grower_info')
+    path('', home_view, name='home'),
+    path('shop/', shop_home_view, name='shop_home'),
+    path('shop/flowers/', flowers_home_view, name='flowers_home'),
+    path('shop/flowers/<slug:slug>', product_info_view, name='product_info_view'),
+    path('growers/', growers_home_view, name='growers_home'),
+    path('growers/<slug:slug>', grower_info_view, name='grower_info_view'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('login/', login_view, name='login_view'),
+    path('register_view/', register_view, name='register_view'),
+    path('reviews/<slug:slug>', review, name='review'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
