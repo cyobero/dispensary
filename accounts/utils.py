@@ -14,9 +14,9 @@ def calculate_age(birth_date):
                                str(birth_date.month), str(birth_date.day))
     birth_date = datetime.datetime.strptime(birth_date, '%Y/%m/%d')
     current_date = datetime.datetime.now()
-    age = (current_date - birth_date)/35.2424
+    age = (current_date - birth_date)/365.2424
 
-    return age
+    return age.days
 
 
 def old_enough(birth_date):
@@ -29,8 +29,3 @@ def old_enough(birth_date):
     """
     age = calculate_age(birth_date)
     return age >= 21
-
-
-def password_confirmed(raw_password, confirm_password):
-    """Returns True if `raw_password` == `confirm_password`"""
-    return raw_password == confirm_password
